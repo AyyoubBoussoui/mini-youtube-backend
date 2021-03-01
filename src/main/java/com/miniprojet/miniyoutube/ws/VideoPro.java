@@ -31,15 +31,18 @@ public class VideoPro {
         return videoservice.findAll();
     }
 
-    @GetMapping("/id/{id}")
+    /*@GetMapping("/id/{id}")
     public Video getOne(@PathVariable Long id) {
         return videoservice.getOne(id);
-    }
+    }*/
 
     @PostMapping("/")
     public int save(@RequestBody Video vid) {
         return videoservice.save(vid);
     }
-
+    @PutMapping("/")
+    public int update(@RequestBody Video vide){
+        return videoservice.update(vide);
+    }
 
 }

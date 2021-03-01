@@ -1,9 +1,6 @@
 package com.miniprojet.miniyoutube.bean;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Video {
@@ -19,7 +16,8 @@ public class Video {
     private double totalVue;
     private String url;
     private String path;
-    private String refPlayList;
+    @ManyToOne
+    private PlayListe playListe;
     public long getId() {
         return id;
     }
@@ -64,8 +62,12 @@ public class Video {
         return path;
     }
 
-    public String getRefPlayList() {
-        return refPlayList;
+    public PlayListe getPlayListe() {
+        return playListe;
+    }
+
+    public void setPlayListe(PlayListe playListe) {
+        this.playListe = playListe;
     }
 
     public void setId(long id) {
@@ -112,7 +114,5 @@ public class Video {
         this.path = path;
     }
 
-    public void setRefPlayList(String refPlayList) {
-        this.refPlayList = refPlayList;
-    }
+
 }
