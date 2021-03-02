@@ -13,7 +13,7 @@ public class User {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Long id;
-    private Long login ;
+    private String login ;
     private String password;
     private String nom;
     private String prenom;
@@ -26,11 +26,11 @@ public class User {
         this.id = id;
     }
 
-    public Long getLogin() {
+    public String getLogin() {
         return login;
     }
 
-    public void setLogin(Long login) {
+    public void setLogin(String login) {
         this.login = login;
     }
 

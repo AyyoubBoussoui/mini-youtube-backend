@@ -13,29 +13,27 @@ import java.util.List;
 @RequestMapping("chaine-youtube/chaine")
 public class chaineProvided {
 
-
-
     @GetMapping("/ref/{ref}")
     public Chaine findByRef(@PathVariable String ref) {
         return chaineService.findByRef(ref);
     }
-
-    @DeleteMapping("/Id/{Id}")
+    @DeleteMapping("/ref/{ref}")
     public int deleteByRef(@PathVariable String ref) {
         return chaineService.deleteByRef(ref);
+    }
+    @GetMapping("/UserId/Id/{id}")
+    public List<Chaine> findByUserId(@PathVariable Long Id) {
+        return chaineService.findByUserId(Id);
     }
     @GetMapping("/")
     public List<Chaine> findAll() {
         return chaineService.findAll();
     }
-    @GetMapping("/id/{id}")
-    public Chaine getOne(@PathVariable Long aLong) {
-        return chaineService.getOne(aLong);
-    }
     @PostMapping("/")
     public int save(@RequestBody Chaine chaine) {
         return chaineService.save(chaine);
     }
+
 
     @Autowired
     private ChaineService chaineService;

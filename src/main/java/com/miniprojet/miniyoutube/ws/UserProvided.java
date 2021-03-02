@@ -11,23 +11,24 @@ import java.util.List;
 @RestController
 @RequestMapping(value="user-youtube/User")
 public class UserProvided {
+
     @PostMapping("/")
     public int save(@RequestBody User user) {
         return userService.save(user);
     }
-    @GetMapping("/Id/{Id}")
-    public User findById(@PathVariable Long Id) {
-        return userService.findById(Id);
+    @GetMapping("/Login/{login}")
+    public User findByLogin(@PathVariable String login) {
+        return userService.findByLogin(login);
     }
-    @GetMapping("/chaine/Id/{Id}")
-    public List<User> findByChaineId(@PathVariable Long Id) {
-        return userService.findByChaineId(Id);
+    @DeleteMapping("/Login/{login}")
+    public int deleteByLogin(@PathVariable String login) {
+        return userService.deleteByLogin(login);
     }
-
     @GetMapping("/")
     public List<User> findAll() {
         return userService.findAll();
     }
+
 
     @Autowired
     private UserService userService;

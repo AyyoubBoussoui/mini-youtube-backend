@@ -11,8 +11,10 @@ import java.util.List;
 
 @Service
 public class UserService {
+
+
     public int save(User user) {
-        if (findById(user.getId()) != null) {
+        if (findByLogin(user.getLogin()) != null) {
             return -1;
         } else {
             userDao.save(user);
@@ -22,26 +24,20 @@ public class UserService {
 
 
 
-    public User findById (Long Id){
-        return userDao.getOne(Id);
-    }
-
-    public List<User> findByChaineId (Long Id){
-        return userDao.findByChaineId(Id);
-    }
-
-    public int deleteByChaine (String Id){
-        return userDao.deleteByChaine(Id);
-    }
-
-    public List<User> findAll () {
-        return userDao.findAll();
-    }
-
-
 
     @Autowired
 
     private UserDao userDao;
 
+    public User findByLogin(String login) {
+        return userDao.findByLogin(login);
+    }
+
+    public int deleteByLogin(String login) {
+        return userDao.deleteByLogin(login);
+    }
+
+    public List<User> findAll() {
+        return userDao.findAll();
+    }
 }
