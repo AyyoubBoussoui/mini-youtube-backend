@@ -1,6 +1,7 @@
 package com.miniprojet.miniyoutube.service;
 
 import com.miniprojet.miniyoutube.bean.Chaine;
+import com.miniprojet.miniyoutube.bean.PlayListe;
 import com.miniprojet.miniyoutube.bean.User;
 import com.miniprojet.miniyoutube.dao.ChaineDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,9 @@ public class ChaineService {
 
     public List<Chaine> findAll() {
         return chaineDao.findAll();
+    }
+    public void update(Chaine chaine){
+        chaineDao.save(chaine);
     }
 
     @Autowired

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class PlayListe {
@@ -15,7 +16,17 @@ public class PlayListe {
     private String description;
     private  String tags;
     private String refChaine;
+    @ManyToOne
+    private Chaine chaine;
 
+
+    public Chaine getChaine() {
+		return chaine;
+	}
+
+	public void setChaine(Chaine chaine) {
+		this.chaine = chaine;
+	}
 
     public String getRefChaine() {
         return refChaine;
