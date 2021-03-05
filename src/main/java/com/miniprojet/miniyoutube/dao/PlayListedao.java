@@ -15,6 +15,5 @@ public interface PlayListedao extends JpaRepository<PlayListe,Long> {
     int deleteByRef(String ref);
     List<PlayListe> findByChaineRef(String ref);
     int deleteByChaineRef(String ref );
-    void update(PlayListe playliste);
 
 }

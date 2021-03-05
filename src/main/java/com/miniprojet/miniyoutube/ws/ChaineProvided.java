@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("chaine-youtube/chaine")
-public class chaineProvided {
+public class ChaineProvided {
 
     @GetMapping("/ref/{ref}")
     public Chaine findByRef(@PathVariable String ref) {

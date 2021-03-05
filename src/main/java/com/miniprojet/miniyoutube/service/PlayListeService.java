@@ -13,7 +13,7 @@ import javax.transaction.Transactional;
 @Service
 public class PlayListeService {
     @Autowired
-    private PlayListedao pld;
+    private PlayListedao playListedao;
     @Autowired
     private ChaineService chaineservice;
        
@@ -28,30 +28,31 @@ public class PlayListeService {
     		return-2;}
     	else {
     		chaineservice.update(chaine);
-    	
-         pld.save(playliste);
+
+            playListedao.save(playliste);
         return 1;}
     } 
     
     
 
 	public List<PlayListe> findByChaineRef(String ref) {
-		return pld.findByChaineRef(ref);
+		return playListedao.findByChaineRef(ref);
 	}
 
 	public int deleteByChaineRef(String ref) {
-		return pld.deleteByChaineRef(ref);}
+		return playListedao.deleteByChaineRef(ref);}
 		
 
 
     public PlayListe findByRef(String ref) {
-        return pld.findByRef(ref);
+        return playListedao.findByRef(ref);
     }
 
     public int deleteByRef(String ref) {
-        return pld.deleteByRef(ref);
+        return playListedao.deleteByRef(ref);
     }
+
     public void update(PlayListe playst){
-        pld.save(playst);
+        playListedao.save(playst);
     }
 }

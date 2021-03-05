@@ -16,15 +16,15 @@ public class PlayListeProvided {
 	    private PlayListeService pls ;
 	    
 	    
-	    
-	    public void update(PlayListe playst) {
+	    @PutMapping("/")
+	    public void update(@RequestBody PlayListe playst) {
 			pls.update(playst);
 		}
 	@GetMapping("/chaine/reference/{reference}")
 		public List<PlayListe> findByChaineRef(@PathVariable String ref) {
 			return pls.findByChaineRef(ref);
 		}
-	@Transactional @DeleteMapping("/ref/{ref}")
+	@Transactional @DeleteMapping("/chaine/ref/{ref}")
 		public int deleteByChaineRef(@PathVariable String ref) {
 			return pls.deleteByChaineRef(ref);
 		}
