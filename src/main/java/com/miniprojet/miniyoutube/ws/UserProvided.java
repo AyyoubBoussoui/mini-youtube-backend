@@ -16,14 +16,17 @@ public class UserProvided {
     public int save(@RequestBody User user) {
         return userService.save(user);
     }
+
     @GetMapping("/Login/{login}")
     public User findByLogin(@PathVariable String login) {
         return userService.findByLogin(login);
     }
+
     @DeleteMapping("/Login/{login}")
     public int deleteByLogin(@PathVariable String login) {
         return userService.deleteByLogin(login);
     }
+
     @GetMapping("/")
     public List<User> findAll() {
         return userService.findAll();

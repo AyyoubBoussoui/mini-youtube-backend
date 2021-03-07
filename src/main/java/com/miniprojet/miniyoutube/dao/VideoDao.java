@@ -14,6 +14,5 @@ public interface VideoDao extends JpaRepository<Video,Long> {
     int deleteByRef(String ref);
     List<Video> findByPlayListeRef(String ref);
     int deleteByPlayListeRef(String ref);
-    //Video getOne(Long id);
-    //int update(Video vide);
+
 }
