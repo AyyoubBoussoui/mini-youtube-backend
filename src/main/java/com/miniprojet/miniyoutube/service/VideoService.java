@@ -55,6 +55,8 @@ public class VideoService {
             return -1;}
         if((vid.getDislikes()+vid.getLikes())>vid.getTotalVue()){return -2;}
         else if (vid.getRef().startsWith("ref")){
+            PlayListe plylst=playListeService.findByRef(vid.getPlayListe().getRef());
+            vid.setPlayListe(plylst);
         videoDao.save(vid);
         return 1;
         }
