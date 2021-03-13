@@ -2,6 +2,7 @@ package com.miniprojet.miniyoutube.ws;
 
 import com.miniprojet.miniyoutube.bean.Video;
 import com.miniprojet.miniyoutube.service.VideoService;
+import com.miniprojet.miniyoutube.vo.Videovo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,12 @@ import java.util.List;
 @RestController
 @RequestMapping("gestion-video/video")
 public class VideoPro {
+
+    @PostMapping("/Total-Views")
+    public List<Videovo> SerchByTotalViews(@RequestBody Videovo videovo) {
+        return videoservice.SerchByTotalViews(videovo);
+    }
+
     @Autowired
     private VideoService videoservice;
 
@@ -25,6 +32,10 @@ public class VideoPro {
          videoservice.deleteByRef(ref);
         return 1;
     }
+    @GetMapping("/something")
+    public List<Video> findBySomething() {
+        return videoservice.findBySomething();
+    }
 
     @GetMapping("/")
     public List<Video> findAll() {
@@ -35,6 +46,7 @@ public class VideoPro {
     public Video getOne(@PathVariable Long id) {
         return videoservice.getOne(id);
     }*/
+
 
     @PostMapping("/")
     public int save(@RequestBody Video vid) {

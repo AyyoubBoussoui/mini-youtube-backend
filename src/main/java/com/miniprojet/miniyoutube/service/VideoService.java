@@ -3,21 +3,44 @@ package com.miniprojet.miniyoutube.service;
 import com.miniprojet.miniyoutube.bean.PlayListe;
 import com.miniprojet.miniyoutube.bean.Video;
 import com.miniprojet.miniyoutube.dao.VideoDao;
+import com.miniprojet.miniyoutube.vo.Videovo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 @Service
 public class VideoService {
+    public List<Video> findBySomething() {
+        return videoDao.findBySomething();
+    }
+
+   public List<Videovo> SerchByTotalViews(Videovo videovo){
+        String query="SELECT v FROM Video v where 1=1";
+      if (videovo.getRef()!=null && !videovo.getRef().isEmpty()){
+         query+=" AND v.ref='"+videovo.getRef()+"'";
+      }
+      if (videovo.getTotalmax()!=null && !videovo.getTotalmax().isNaN()){
+          query+=" AND v.totalVue<="+videovo.getTotalmax();
+      }
+       if (videovo.getTotalmin()!=null && !videovo.getTotalmin().isNaN()){
+           query+=" AND v.totalVue>="+videovo.getTotalmin();
+       }
+      return entityManagerger.createQuery(query).getResultList();
+
+    }
 
     @Autowired
     private VideoDao videoDao;
     @Autowired
     private PlayListeService playListeService;
+    @Autowired
+    private EntityManager entityManagerger;
     public Video findByRef(String ref) {
         return videoDao.findByRef(ref);
     }
@@ -36,7 +59,7 @@ public class VideoService {
         return videoDao.getOne(id);
     }*/
 
-    public int addVidToPlyLst(Video vid){
+    /*public int addVidToPlyLst(Video vid){
         if(vid.getRef() == null){
         return -1;}
         PlayListe plylst=playListeService.findByRef(vid.getPlayListe().getRef());
@@ -49,7 +72,7 @@ public class VideoService {
             playListeService.update(plylst);
             return 1;
         }
-    }
+    }*/
     public int save(Video vid) {
         if (findByRef(vid.getRef())!=null){
             return -1;}
@@ -57,8 +80,9 @@ public class VideoService {
         else if (vid.getRef().startsWith("ref")){
             PlayListe plylst=playListeService.findByRef(vid.getPlayListe().getRef());
             vid.setPlayListe(plylst);
-        videoDao.save(vid);
-        return 1;
+            if (plylst==null){return -4;}
+        else {videoDao.save(vid);
+        return 1;}
         }
         else{return -3;}
     }
