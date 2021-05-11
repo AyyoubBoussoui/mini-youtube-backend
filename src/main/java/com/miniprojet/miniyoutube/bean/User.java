@@ -1,22 +1,45 @@
 package com.miniprojet.miniyoutube.bean;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 
 
 @Entity
 
-public class User {
+public class User implements Serializable {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String login ;
+    private String ref;
+    private String login;
     private String password;
-    private String nom;
-    private String prenom;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "user")
+    private List<Chaine> chaines = new ArrayList<Chaine>();
+
+    public String getRef() {
+        return ref;
+    }
+
+    public void setRef(String ref) {
+        this.ref = ref;
+    }
+
+    public List<Chaine> getChaines() {
+        return chaines;
+    }
+
+
+    public void setChaines(List<Chaine> chaines) {
+        this.chaines = chaines;
+    }
 
     public Long getId() {
         return id;
@@ -42,19 +65,5 @@ public class User {
         this.password = password;
     }
 
-    public String getNom() {
-        return nom;
-    }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
 }

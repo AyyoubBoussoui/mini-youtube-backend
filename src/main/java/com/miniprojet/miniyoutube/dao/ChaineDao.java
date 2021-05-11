@@ -8,9 +8,15 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ChaineDao extends JpaRepository<Chaine,Long > {
+public interface ChaineDao extends JpaRepository<Chaine, Long> {
 
     Chaine findByRef(String ref);
+
     int deleteByRef(String ref);
-    List<Chaine> findByUserId(Long Id);
+
+    List<Chaine> findByUserRef(String ref);
+
+    int deleteByUserRef(String ref);
+
+
 }

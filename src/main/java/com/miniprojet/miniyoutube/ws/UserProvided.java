@@ -1,5 +1,6 @@
 package com.miniprojet.miniyoutube.ws;
 
+import com.miniprojet.miniyoutube.bean.Chaine;
 import com.miniprojet.miniyoutube.bean.User;
 import com.miniprojet.miniyoutube.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,8 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value="user-youtube/User")
+@CrossOrigin(origins = {"http://localhost:4200"})
+@RequestMapping(value = "user-youtube/user")
 public class UserProvided {
 
     @PostMapping("/")
@@ -17,14 +19,14 @@ public class UserProvided {
         return userService.save(user);
     }
 
-    @GetMapping("/Login/{login}")
-    public User findByLogin(@PathVariable String login) {
-        return userService.findByLogin(login);
+    @GetMapping("/ref/{ref}")
+    public User findByRef(@PathVariable String ref) {
+        return userService.findByRef(ref);
     }
 
-    @DeleteMapping("/Login/{login}")
-    public int deleteByLogin(@PathVariable String login) {
-        return userService.deleteByLogin(login);
+    @DeleteMapping("/ref/{ref}")
+    public int deleteByRef(@PathVariable String ref) {
+        return userService.deleteByRef(ref);
     }
 
     @GetMapping("/")
@@ -32,6 +34,21 @@ public class UserProvided {
         return userService.findAll();
     }
 
+
+    @PutMapping("/")
+    public void update(@RequestBody User user) {
+        userService.update(user);
+    }
+
+    @GetMapping("/login/{login}")
+    public User findByLogin(@PathVariable String login) {
+        return userService.findByLogin(login);
+    }
+
+@GetMapping("/login/{login}/password/{password}")
+    public int connecter(@PathVariable String login, @PathVariable String password) {
+        return userService.connecter(login, password);
+    }
 
     @Autowired
     private UserService userService;

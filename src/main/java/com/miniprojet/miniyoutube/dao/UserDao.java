@@ -9,10 +9,14 @@ import java.util.List;
 
 
 @Repository
-public interface UserDao extends JpaRepository<User,Long> {
+public interface UserDao extends JpaRepository<User, Long> {
 
-    User findByLogin(String login);
-    int deleteByLogin(String login);
+    User findByRef(String ref);
+
+   public  int deleteByRef(String ref);
+    public  User findByLogin(String login);
+
+
 
 
 }

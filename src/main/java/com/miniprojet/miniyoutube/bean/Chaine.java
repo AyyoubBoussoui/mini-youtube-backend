@@ -4,14 +4,13 @@ import javax.persistence.*;
 
 @Entity
 public class Chaine {
-    @Id @GeneratedValue (strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String ref;
     private String titre;
-    private String descreption;
     private Long nombreAbonnee;
-    private String login;
-    private String password;
+
     @ManyToOne
     private User user;
 
@@ -39,13 +38,6 @@ public class Chaine {
         this.titre = titre;
     }
 
-    public String getDescreption() {
-        return descreption;
-    }
-
-    public void setDescreption(String descreption) {
-        this.descreption = descreption;
-    }
 
     public Long getNombreAbonnee() {
         return nombreAbonnee;
@@ -55,21 +47,6 @@ public class Chaine {
         this.nombreAbonnee = nombreAbonnee;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public User getUser() {
         return user;
