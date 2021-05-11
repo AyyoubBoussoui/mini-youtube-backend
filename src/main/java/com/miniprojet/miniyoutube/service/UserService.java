@@ -15,12 +15,17 @@ import java.util.List;
 @Service
 public class UserService {
     @Transactional
+
+
+
     public int deleteByRef(String ref) {
         System.out.println("ref = " + ref);
         int deleteByUserRef = chaineService.deleteByUserRef(ref);
         int deleteByRef = userDao.deleteByRef(ref);
         return deleteByUserRef + deleteByRef;
     }
+
+
 
     public void update(User user) {
         userDao.save(user);
